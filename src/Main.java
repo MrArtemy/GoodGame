@@ -27,27 +27,43 @@ public class Main {
                 + "+ —— + —— + —— + —— + —— +";
 
         System.out.println("Привет! Ты готов начать играть в игру? (Напиши: ДА или НЕТ)");
+
         Scanner scanner = new Scanner(System.in);
         String answer = scanner.nextLine();
 
         System.out.println("Ваш ответ:\t" + answer);
 
-        if (answer.equals("ДА")) {
-            System.out.println("Начинаем играть!");
+        switch (answer) {
+            case "ДА", "да", "Да", "дА", "lf", "LF", "Lf":
+                System.out.println("Выбери сложность игры (от 1 до 5):");
+                int difficultGame = scanner.nextInt();
+                System.out.println("Выбранная сложность:\t" + difficultGame);
 
-            System.out.println("Введите куда будет ходить персонаж (ход возможен только по вертикали и горизонтали на одну клетку)");
-            System.out.println("Координаты персонажа - (x: " + personX + ", y: " + personY + ")");
+                System.out.println("Начинаем играть!");
 
-            int x = scanner.nextInt();
-            int y = scanner.nextInt();
+                System.out.println("Введите куда будет ходить персонаж (ход возможен только по вертикали и горизонтали на одну клетку)");
+                System.out.println("Координаты персонажа - (x: " + personX + ", y: " + personY + ")");
 
-        } else {
-            System.out.println("Как так, почему ты не захотел со мной играть? :(");
+                int x = scanner.nextInt();
+                int y = scanner.nextInt();
+
+                if (x != personX && y != personY) {
+                    System.out.println("Некорректный ход");
+                } else if (Math.abs(x - personX) == 1 || Math.abs(y - personY) == 1) {
+                    personX = x;
+                    personY = y;
+                    step += 1;
+                    System.out.println("Ход корректный; Новые координаты: " +
+                            personX + ", " + personY + "\nХод номер: " + step);
+                } else {
+                    System.out.println("Координаты не изменены");
+                }
+                break;
+            case "НЕТ":
+                System.out.println("Жаль, приходи еще!");
+                break;
+            default:
+                System.out.println("Данные введены некорректно");
         }
-
-
-
-
-
     }
 }
