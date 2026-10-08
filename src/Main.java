@@ -17,6 +17,9 @@ public class Main {
         int castleY = 1;
         int castleX = 1 + random.nextInt(sizeBoard);
 
+        String leftBlock = " | ";
+        String rightBlock = " |";
+        String wall = " + —— + —— + —— + —— + —— + ";
 
         personX = 1 + sizeBoard / 2;
         personY = 1 + sizeBoard / 2;
@@ -51,10 +54,23 @@ public class Main {
                 while ((personLive > 0) && !(castleX == personX && castleY == personY)) {
 
                     /// /////////////////////////////////////////
-                    for (int i = 0; i <= 5; i++) {
-                        int square = i * i;
-                        System.out.println(i + " - " + square);
+                    for (int y = 1; y <= sizeBoard; y++) {
+                        System.out.println(wall);
+
+                        for (int x = 1; x <= sizeBoard; x++) {
+                        System.out.print(leftBlock);
+
+                            if (personY == y && personX == x) {
+                            System.out.print(person);
+                            } else if (castleX == x && castleY == y) {
+                                System.out.print(castle);
+                            } else {
+                                System.out.print("  ");
+                            }
+                        }
+                        System.out.println(rightBlock);
                     }
+                    System.out.println(wall);
                 ////////////////////////////////////////////////
 
 
@@ -81,6 +97,7 @@ public class Main {
                 break;
             default:
                 System.out.println("Данные введены некорректно");
+
         }
     }
 }
